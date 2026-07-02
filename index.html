@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Finca El Sarmiento — Café de Especialidad · Chinácota, Colombia</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+  
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  :root {
+    --brown: #2C1810;
+    --cream: #fbf7f0;
+    --black: #111111;
+    --white: #ffffff;
+    --gold: #c8a44a;
+    --gold-light: #d4a574;
+    --brown-light: rgba(44, 24, 16, 0.08);
+    --brown-glass: rgba(44, 24, 16, 0.75);
+    --radius: 24px;
+    --radius-sm: 12px;
+  }
+  
+  body {
+    font-family: 'Inter', 'Inter Fallback', -apple-system, 'system-ui', sans-serif;
+    background: var(--cream);
+    color: var(--black);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  
+  /* ── NAV ── */
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(251, 247, 240, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0,0,0,0.04);
+  }
+  .nav-logo {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--brown);
+    letter-spacing: -0.3px;
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 28px; list-style: none; }
+  .nav-links a {
+    font-size: 14px;
+    color: var(--black);
+    text-decoration: none;
+    font-weight: 500;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+  .nav-links a:hover { opacity: 1; }
+  
+  /* ── HERO ── */
+  .hero {
+    background: var(--brown);
+    color: var(--white);
+    padding: 100px 40px 120px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse at 20% 50%, rgba(200, 164, 74, 0.06) 0%, transparent 70%),
+      radial-gradient(ellipse at 80% 20%, rgba(212, 165, 116, 0.08) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .hero h1 {
+    font-size: clamp(42px, 7vw, 80px);
+    font-weight: 800;
+    letter-spacing: -2px;
+    line-height: 1.05;
+    position: relative;
+  }
+  .hero .sub {
+    font-size: 18px;
+    font-weight: 400;
+    opacity: 0.7;
+    margin-top: 16px;
+    max-width: 540px;
+    margin-inline: auto;
+    position: relative;
+  }
+  .hero-cta {
+    margin-top: 36px;
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+  }
+  .btn {
+    display: inline-block;
+    padding: 14px 28px;
+    border-radius: 100px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .btn-light {
+    background: var(--white);
+    color: var(--brown);
+  }
+  .btn-light:hover { background: #e8e8e4; }
+  .btn-outline {
+    border: 1.5px solid rgba(255,255,255,0.25);
+    color: var(--white);
+  }
+  .btn-outline:hover { border-color: rgba(255,255,255,0.5); }
+  .btn-gold {
+    background: var(--gold);
+    color: var(--brown);
+  }
+  .btn-gold:hover { background: #b8943a; }
+  
+  .hero-badge {
+    display: inline-block;
+    background: rgba(200, 164, 74, 0.15);
+    border: 1px solid rgba(200, 164, 74, 0.3);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gold);
+    margin-bottom: 24px;
+    position: relative;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  
+  /* Hero cards */
+  .hero-cards {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    margin-top: 48px;
+    position: relative;
+    flex-wrap: wrap;
+  }
+  .hero-card {
+    background: var(--brown-glass);
+    backdrop-filter: blur(8px);
+    border-radius: var(--radius-sm);
+    padding: 20px 24px;
+    text-align: left;
+    min-width: 190px;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .hero-card .num {
+    font-size: 36px;
+    font-weight: 800;
+    opacity: 0.5;
+  }
+  .hero-card .label {
+    font-size: 13px;
+    font-weight: 500;
+    margin-top: 4px;
+    opacity: 0.8;
+  }
+  
+  /* ── SECTIONS ── */
+  .section {
+    padding: 80px 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .section-dark {
+    background: var(--brown);
+    color: var(--white);
+    max-width: 100%;
+  }
+  .section-dark .section-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 80px 40px;
+  }
+  
+  .section-label {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--brown);
+    opacity: 0.6;
+    margin-bottom: 12px;
+  }
+  .section-dark .section-label { color: var(--white); opacity: 0.5; }
+  
+  .section h2 {
+    font-size: clamp(34px, 5vw, 56px);
+    font-weight: 700;
+    letter-spacing: -1.5px;
+    line-height: 1.1;
+    margin-bottom: 24px;
+  }
+  .section-dark h2 { color: var(--white); }
+  
+  .section p.lead {
+    font-size: 17px;
+    color: #555;
+    max-width: 600px;
+    line-height: 1.6;
+    margin-bottom: 40px;
+  }
+  .section-dark p.lead { color: rgba(255,255,255,0.6); }
+  
+  /* ── 4 PILLARS GRID ── */
+  .grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-top: 8px;
+  }
+  .pillar {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 32px 24px;
+    border: 1px solid rgba(0,0,0,0.04);
+    transition: transform 0.2s;
+  }
+  .pillar:hover { transform: translateY(-2px); }
+  .pillar .icon {
+    font-size: 36px;
+    margin-bottom: 16px;
+  }
+  .pillar h3 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--brown);
+    margin-bottom: 8px;
+  }
+  .pillar p {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+  }
+  
+  /* ── PHASE CARDS ── */
+  .phase-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .phase-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 36px 28px;
+    border: 1px solid rgba(0,0,0,0.04);
+  }
+  .phase-card .phase-num {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--brown);
+    opacity: 0.6;
+    margin-bottom: 12px;
+  }
+  .phase-card h3 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .phase-card p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.7;
+  }
+  
+  /* ── METRICS ── */
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 16px;
+  }
+  .metric-chip {
+    background: var(--brown-light);
+    border-radius: 100px;
+    padding: 12px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--brown);
+    text-align: center;
+  }
+  
+  /* ── PROCESS TIMELINE ── */
+  .timeline {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 8px;
+    margin-top: 32px;
+  }
+  .timeline-step {
+    background: var(--white);
+    border-radius: var(--radius-sm);
+    padding: 20px 14px;
+    text-align: center;
+    border: 1px solid rgba(0,0,0,0.04);
+    transition: transform 0.2s;
+  }
+  .timeline-step:hover { transform: translateY(-2px); }
+  .timeline-step .step-emoji {
+    font-size: 28px;
+    margin-bottom: 8px;
+  }
+  .timeline-step .step-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--brown);
+    line-height: 1.3;
+  }
+  .timeline-step .step-time {
+    font-size: 11px;
+    color: #999;
+    margin-top: 4px;
+  }
+  
+  /* ── PRODUCT CARDS ── */
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 32px;
+  }
+  .product-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius);
+    padding: 40px 32px;
+    text-align: center;
+  }
+  .product-card .prod-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+  }
+  .product-card h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .product-card .weight {
+    font-size: 14px;
+    opacity: 0.5;
+    margin-bottom: 16px;
+  }
+  .product-card p {
+    font-size: 13px;
+    opacity: 0.6;
+    line-height: 1.7;
+  }
+  
+  /* ── STATS ── */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-top: 32px;
+  }
+  .stat {
+    text-align: center;
+    padding: 28px 16px;
+    background: var(--white);
+    border-radius: var(--radius);
+    border: 1px solid rgba(0,0,0,0.04);
+  }
+  .stat .num {
+    font-size: 48px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    color: var(--brown);
+  }
+  .stat .label {
+    font-size: 13px;
+    color: #777;
+    margin-top: 6px;
+    line-height: 1.4;
+  }
+  
+  /* ── CONTACT ── */
+  .contact-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 48px;
+    text-align: center;
+    border: 1px solid rgba(0,0,0,0.04);
+    margin-top: 24px;
+  }
+  .contact-card .contact-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+  }
+  .contact-card h3 {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--brown);
+    margin-bottom: 8px;
+  }
+  .contact-card .phone {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--gold);
+    letter-spacing: -1px;
+  }
+  
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--brown);
+    color: var(--white);
+    padding: 60px 40px;
+    text-align: center;
+  }
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    text-align: left;
+    margin-bottom: 40px;
+  }
+  .footer-inner h4 {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0.4;
+    margin-bottom: 16px;
+  }
+  .footer-inner a {
+    display: block;
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    font-size: 14px;
+    line-height: 2;
+    transition: opacity 0.2s;
+  }
+  .footer-inner a:hover { opacity: 1; }
+  .footer-bottom {
+    font-size: 12px;
+    opacity: 0.35;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 24px;
+  }
+  .footer-logo {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    margin-bottom: 8px;
+    opacity: 0.8;
+  }
+  
+  /* ── QUOTE ── */
+  .quote-section {
+    text-align: center;
+    padding: 60px 40px;
+  }
+  .quote-section blockquote {
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--brown);
+    font-style: italic;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.4;
+    position: relative;
+  }
+  .quote-section blockquote::before {
+    content: '"';
+    font-size: 120px;
+    color: var(--gold);
+    opacity: 0.2;
+    position: absolute;
+    top: -60px;
+    left: -40px;
+    font-style: normal;
+    font-weight: 800;
+  }
+  
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .grid-4, .phase-cards, .stats { grid-template-columns: 1fr 1fr; }
+    .product-grid { grid-template-columns: 1fr; }
+    .timeline { grid-template-columns: repeat(3, 1fr); }
+    .footer-inner { grid-template-columns: 1fr 1fr; }
+    .hero h1 { font-size: 36px; }
+    .hero { padding: 60px 24px 80px; }
+    .section, .section-dark .section-inner { padding: 50px 24px; }
+    .nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .metrics-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="#" class="nav-logo">🌿 Finca El Sarmiento</a>
+  <ul class="nav-links">
+    <li><a href="#proceso">El Proceso</a></li>
+    <li><a href="#cafe">Nuestro Café</a></li>
+    <li><a href="#finca">La Finca</a></li>
+    <li><a href="#productos">Productos</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">☕ Café de Especialidad</div>
+  <h1>De nuestra finca<br>a tu taza.</h1>
+  <p class="sub">Café 100% colombiano cultivado y procesado artesanalmente en Chinácota, Vereda Iscalá, Norte de Santander. Producción de micro-lote con trazabilidad completa.</p>
+  <div class="hero-cta">
+    <a href="#productos" class="btn btn-gold">Ver productos</a>
+    <a href="#proceso" class="btn btn-outline">Conoce el proceso →</a>
+  </div>
+  <div class="hero-cards">
+    <div class="hero-card">
+      <div class="num">10–15 kg</div>
+      <div class="label">Producción diaria<br>de café pergamino</div>
+    </div>
+    <div class="hero-card">
+      <div class="num">11</div>
+      <div class="label">Etapas controladas<br>desde la cereza</div>
+    </div>
+    <div class="hero-card">
+      <div class="num">100%</div>
+      <div class="label">Procesamiento<br>artesanal en finca</div>
+    </div>
+  </div>
+</section>
+
+<!-- EL PROCESO -->
+<div class="section" id="proceso">
+  <div class="section-label">// EL PROCESO</div>
+  <h2>11 etapas. Un solo origen.<br>Café que cuenta una historia.</h2>
+  <p class="lead">Cada etapa del beneficio del café se hace en la finca, con control de calidad en cada paso. De la recolección selectiva al empaque final.</p>
+  
+  <div class="grid-4">
+    <div class="pillar">
+      <div class="icon">🌱</div>
+      <h3>Recolección Selectiva</h3>
+      <p>Solo cerezas en su punto exacto de maduración. Recolección manual, grano por grano.</p>
+    </div>
+    <div class="pillar">
+      <div class="icon">💧</div>
+      <h3>Beneficio Húmedo</h3>
+      <p>Despulpado, fermentación controlada y lavado. El secreto de un perfil de taza limpio y dulce.</p>
+    </div>
+    <div class="pillar">
+      <div class="icon">☀️</div>
+      <h3>Secado Solar</h3>
+      <p>Marquesina con control de humedad. El sol de Chinácota seca el grano en 5–7 días. Nada de secadoras mecánicas.</p>
+    </div>
+    <div class="pillar">
+      <div class="icon">🔥</div>
+      <h3>Tostado Artesanal</h3>
+      <p>Tueste en micro-lotes. Control manual de tiempo y temperatura. Cada lote recibe atención personalizada.</p>
+    </div>
+  </div>
+</div>
+
+<!-- FASES -->
+<div class="section">
+  <div class="section-label">// CÓMO LO HACEMOS</div>
+  <h2>Cuatro fases.<br>Del árbol al empaque.</h2>
+  
+  <div class="phase-cards" style="margin-top:32px;">
+    <div class="phase-card">
+      <div class="phase-num">Fase 1 · 1 día</div>
+      <h3>Beneficio Húmedo</h3>
+      <p>Recolección manual de cerezas rojas → clasificación por flotación → despulpado → fermentación controlada 18–24h → lavado con agua limpia.</p>
+    </div>
+    <div class="phase-card">
+      <div class="phase-num">Fase 2 · 5–7 días</div>
+      <h3>Secado Solar</h3>
+      <p>Café pergamino extendido en marquesina. Movimiento cada 30–45 minutos. Control diario de humedad hasta alcanzar 10–12% exacto.</p>
+    </div>
+    <div class="phase-card">
+      <div class="phase-num">Fase 3 · 1 día</div>
+      <h3>Beneficio Seco</h3>
+      <p>Trillado para remover el pergamino → clasificación por tamaño con zarandas → selección manual de defectos. Solo granos perfectos pasan.</p>
+    </div>
+  </div>
+  
+  <div class="phase-cards" style="margin-top:20px;">
+    <div class="phase-card">
+      <div class="phase-num">Fase 4 · 1 día</div>
+      <h3>Tostado y Empaque</h3>
+      <p>Tueste en micro-lotes de 1–3 kg → enfriamiento rápido → empaque en bolsa con válvula desgasificadora. Café fresco, siempre.</p>
+    </div>
+    <div class="phase-card" style="background: var(--brown); color: var(--white); border-color: transparent;">
+      <div class="phase-num" style="color: var(--gold);">Resultado</div>
+      <h3>Café 100% trazable</h3>
+      <p style="color: rgba(255,255,255,0.7);">Desde qué lote del cultivo, qué día se recolectó, cómo se fermentó y quién lo tostó. Trazabilidad que el café industrial nunca tendrá.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ETAPAS DEL PROCESO -->
+<div class="section">
+  <div class="section-label">// TRAZABILIDAD TOTAL</div>
+  <h2>11 etapas. Cada una<br>importa para el sabor final.</h2>
+  <p class="lead">Así controlamos cada paso desde que la cereza sale del árbol hasta que el café llega a tu taza.</p>
+  
+  <div class="metrics-grid">
+    <div class="metric-chip">🌱 1. Recolección selectiva</div>
+    <div class="metric-chip">🪣 2. Clasificación por flotación</div>
+    <div class="metric-chip">⚙️ 3. Despulpado</div>
+    <div class="metric-chip">🧫 4. Fermentación 18–24h</div>
+    <div class="metric-chip">💧 5. Lavado</div>
+    <div class="metric-chip">☀️ 6. Secado solar</div>
+    <div class="metric-chip">📏 7. Control de humedad</div>
+    <div class="metric-chip">🏗️ 8. Trillado</div>
+    <div class="metric-chip">🔍 9. Clasificación por tamaño</div>
+    <div class="metric-chip">🔥 10. Tostado</div>
+    <div class="metric-chip">📦 11. Empaque</div>
+    <div class="metric-chip" style="background: var(--gold); color: var(--white);">☕ Tu taza</div>
+  </div>
+</div>
+
+<!-- PRODUCTOS -->
+<div class="section-dark" id="productos">
+  <div class="section-inner">
+    <div class="section-label">// NUESTRO CAFÉ</div>
+    <h2>Café de especialidad<br>en grano o molido.</h2>
+    <p class="lead">Micro-lotes de 10–15 kg. Cada bolsa representa un lote específico con su propia historia de proceso.</p>
+    
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="prod-icon">🫘</div>
+        <h3>Café en Grano</h3>
+        <div class="weight">250g · 500g · 1kg</div>
+        <p>Grano entero tostado. Máxima frescura. Para quienes muelen justo antes de preparar. Conserva el aroma hasta 4 semanas.</p>
+      </div>
+      <div class="product-card">
+        <div class="prod-icon">⚙️</div>
+        <h3>Café Molido</h3>
+        <div class="weight">250g · 500g</div>
+        <p>Molido bajo pedido según tu método: prensa francesa, V60, chemex, espresso. Empacado inmediatamente después de moler.</p>
+      </div>
+      <div class="product-card">
+        <div class="prod-icon">🎁</div>
+        <h3>Caja de Degustación</h3>
+        <div class="weight">3 × 250g</div>
+        <p>Tres lotes distintos en una caja. Perfecto para comparar perfiles de tueste y descubrir tu favorito. Incluye guía de cata.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LA FINCA -->
+<div class="section" id="finca">
+  <div class="section-label">// LA FINCA</div>
+  <h2>Chinácota, Vereda Iscalá.<br>Norte de Santander, Colombia.</h2>
+  <p class="lead">Finca El Sarmiento se encuentra en la vereda Iscalá del municipio de Chinácota, una región con condiciones ideales para el café de especialidad: altura, clima y tradición cafetera.</p>
+  
+  <div class="stats">
+    <div class="stat">
+      <div class="num">🇨🇴</div>
+      <div class="label">Chinácota, Vereda Iscalá<br>Norte de Santander</div>
+    </div>
+    <div class="stat">
+      <div class="num">☀️</div>
+      <div class="label">Clima cálido<br>Ideal para secado solar</div>
+    </div>
+    <div class="stat">
+      <div class="num">100%</div>
+      <div class="label">Procesamiento<br>en origen</div>
+    </div>
+    <div class="stat">
+      <div class="num">Artesanal</div>
+      <div class="label">Método de<br>producción</div>
+    </div>
+  </div>
+</div>
+
+<!-- CITA -->
+<div class="section quote-section">
+  <blockquote>
+    Cada taza de café El Sarmiento lleva el sol de Chinácota, el trabajo de nuestras manos y la tradición del café colombiano.
+  </blockquote>
+</div>
+
+<!-- CONTACTO -->
+<div class="section" id="contacto">
+  <div class="section-label">// CONTACTO</div>
+  <h2>¿Quieres probar<br>nuestro café?</h2>
+  <p class="lead">Escríbenos para pedidos, visitas a la finca o cualquier consulta.</p>
+  
+  <div class="contact-card">
+    <div class="contact-icon">📞</div>
+    <h3>Finca El Sarmiento</h3>
+    <p style="color:#777;margin-bottom:16px;">Chinácota, Vereda Iscalá · Norte de Santander</p>
+    <div class="phone">Contáctanos</div>
+    <p style="color:#999;margin-top:8px;font-size:14px;">Pedidos · Visitas · Información</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">🌿 Finca El Sarmiento</div>
+      <p style="font-size:13px;opacity:0.5;">De nuestra finca a tu taza.</p>
+    </div>
+    <div>
+      <h4>El Café</h4>
+      <a href="#proceso">El Proceso</a>
+      <a href="#productos">Productos</a>
+      <a href="#finca">La Finca</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+    <div>
+      <h4>Proceso</h4>
+      <a href="#">Beneficio Húmedo</a>
+      <a href="#">Secado Solar</a>
+      <a href="#">Tostado Artesanal</a>
+      <a href="#">Trazabilidad</a>
+    </div>
+    <div>
+      <h4>Contacto</h4>
+      <a href="#">WhatsApp</a>
+      <a href="#">Instagram</a>
+      <a href="#">Chinácota, Colombia</a>
+      <a href="#">fincaelsarmiento@——</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    Finca El Sarmiento · Chinácota, Vereda Iscalá · Norte de Santander · Colombia 🇨🇴<br>
+    Café de especialidad · Producción artesanal · Micro-lote
+  </div>
+</footer>
+
+</body>
+</html>
