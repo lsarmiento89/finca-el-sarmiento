@@ -506,6 +506,7 @@
   
   /* ── RESPONSIVE ── */
   @media (max-width: 768px) {
+    .gallery-grid { grid-template-columns: repeat(2, 1fr) !important; }
     .grid-4, .phase-cards, .stats { grid-template-columns: 1fr 1fr; }
     .product-grid { grid-template-columns: 1fr; }
     .timeline { grid-template-columns: repeat(3, 1fr); }
@@ -708,9 +709,13 @@
 <div class="section" style="text-align:center;">
   <div class="section-label">// GALERÍA</div>
   <h2>Así es la finca</h2>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px;max-width:700px;margin-inline:auto;">
-    <img src="img/PHOTO-2026-07-02-16-39-30.jpg" alt="Finca El Sarmiento" style="width:100%;border-radius:16px;border:2px solid #e0dcd0;">
-    <img src="img/PHOTO-2026-07-02-16-42-29.jpg" alt="Café El Sarmiento" style="width:100%;border-radius:16px;border:2px solid #e0dcd0;">
+  <p class="lead" style="margin-inline:auto;">Fotos reales de Finca El Sarmiento, Chinácota, Vereda Iscalá.</p>
+  <div class="gallery-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px;max-width:900px;margin-inline:auto;">
+    <img src="img/PHOTO-2026-07-02-16-39-30.jpg" alt="Finca El Sarmiento" style="width:100%;border-radius:16px;border:2px solid #e0dcd0;aspect-ratio:4/3;object-fit:cover;">
+    <img src="img/PHOTO-2026-07-02-16-42-29.jpg" alt="Café El Sarmiento" style="width:100%;border-radius:16px;border:2px solid #e0dcd0;aspect-ratio:4/3;object-fit:cover;">
+    <img src="img/finca_photo3.jpg" alt="Finca El Sarmiento" style="width:100%;border-radius:16px;border:2px solid #e0dcd0;aspect-ratio:4/3;object-fit:cover;">
+    <img src="img/finca_4846.jpg" alt="Finca El Sarmiento" style="width:100%;border-radius:16px;border:2px solid #e0dcd0;aspect-ratio:4/3;object-fit:cover;">
+    <img src="img/finca_4847.jpg" alt="Finca El Sarmiento" style="width:100%;border-radius:16px;border:2px solid #e0dcd0;aspect-ratio:4/3;object-fit:cover;">
   </div>
 </div>
 
